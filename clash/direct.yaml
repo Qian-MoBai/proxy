@@ -1,0 +1,35 @@
+payload:
+  # Port
+  - DST-PORT,22
+  - SRC-PORT,22
+  - DST-PORT,9993
+  # Windows NTP
+  - DOMAIN,time.windows.com
+  # Games Shopping
+  - DOMAIN-SUFFIX,ea.com
+  - DOMAIN-KEYWORD,epicgames
+  - DOMAIN-SUFFIX,ubisoft.com
+  - DOMAIN-SUFFIX,ubi.com
+  # Bilibili
+  - DOMAIN-SUFFIX,acg.tv
+  - DOMAIN-SUFFIX,acgvideo.com
+  - DOMAIN-SUFFIX,b23.tv
+  - DOMAIN-SUFFIX,hdslb.com
+  - DOMAIN,upos-hz-mirrorakam.akamaized.net
+  # Steam
+  - DOMAIN-SUFFIX,fanatical.com
+  - DOMAIN-SUFFIX,humblebundle.com
+  - DOMAIN-SUFFIX,playartifact.com
+  - DOMAIN-SUFFIX,s.team
+  - DOMAIN-SUFFIX,steam-chat.com
+  - DOMAIN-SUFFIX,steamcommunity.com
+  - DOMAIN-SUFFIX,steampowered.com
+  - DOMAIN-SUFFIX,steamgames.com
+  - DOMAIN-SUFFIX,steamstatic.com
+  - DOMAIN-SUFFIX,steamusercontent.com
+  - DOMAIN-SUFFIX,underlords.com
+  - DOMAIN-SUFFIX,valvesoftware.com
+  # NPM Taobao mirror
+  - DOMAIN-SUFFIX,npmmirror.com
+  # ASUS
+  - DOMAIN-KEYWORD,asus
