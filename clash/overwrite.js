@@ -7,7 +7,7 @@ function main(config) {
   const mobaiDirect = {
     type: "http",
     behavior: "classical",
-    url: "https://gh-proxy.org/https://raw.githubusercontent.com/Qian-MoBai/rules/refs/heads/main/clash/direct.yaml",
+    url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/direct.yaml",
     interval: 86400,
   };
   config["rule-providers"][mobaiDirectLabel] = mobaiDirect;
