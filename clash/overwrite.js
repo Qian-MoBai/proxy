@@ -39,7 +39,7 @@ function main(config) {
     {
       name: "故障转移",
       type: "fallback",
-      icon: "🔯",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Magic.png",
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
       "include-all": true,
@@ -47,7 +47,7 @@ function main(config) {
     {
       name: "负载均衡",
       type: "load-balance",
-      icon: "🔮",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Stack.png",
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
       "include-all": true,
@@ -126,7 +126,7 @@ function main(config) {
     {
       name: "巴哈姆特",
       type: "select",
-      icon: "📺",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png",
       proxies: ["节点选择", "台湾节点", "手动切换", "DIRECT"],
     },
     {
@@ -138,7 +138,7 @@ function main(config) {
     {
       name: "国外媒体",
       type: "select",
-      icon: "🌍",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/mini/GlobalMedia.png",
       proxies: [
         "节点选择",
         "自动选择",
@@ -289,13 +289,13 @@ function main(config) {
     {
       name: "AdBlock",
       type: "select",
-      icon: "🆎",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
       proxies: ["REJECT", "DIRECT"],
     },
     {
       name: "隐私防护",
       type: "select",
-      icon: "🛡️",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hijacking.png",
       proxies: ["REJECT", "DIRECT"],
     },
     {
