@@ -7,7 +7,7 @@ function main(config) {
     {
       name: "节点选择",
       type: "select",
-      icon: "🚀",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png",
       proxies: [
         "自动选择",
         "故障转移",
@@ -25,13 +25,13 @@ function main(config) {
     {
       name: "手动切换",
       type: "select",
-      icon: "🚀",
+      icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png",
       "include-all": true,
     },
     {
       name: "自动选择",
       type: "url-test",
-      icon: "♻️",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png",
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
       "include-all": true,
@@ -55,7 +55,7 @@ function main(config) {
     {
       name: "电报消息",
       type: "select",
-      icon: "📲",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png",
       proxies: [
         "节点选择",
         "自动选择",
@@ -72,7 +72,7 @@ function main(config) {
     {
       name: "Ai平台",
       type: "select",
-      icon: "💬",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AI.png",
       proxies: [
         "节点选择",
         "自动选择",
@@ -89,7 +89,7 @@ function main(config) {
     {
       name: "油管视频",
       type: "select",
-      icon: "📹",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png",
       proxies: [
         "节点选择",
         "自动选择",
@@ -106,7 +106,7 @@ function main(config) {
     {
       name: "奈飞视频",
       type: "select",
-      icon: "🎥",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
       proxies: [
         "奈飞节点",
         "节点选择",
@@ -132,7 +132,7 @@ function main(config) {
     {
       name: "哔哩哔哩",
       type: "select",
-      icon: "📺",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png",
       proxies: ["全球直连", "台湾节点", "香港节点"],
     },
     {
@@ -155,7 +155,7 @@ function main(config) {
     {
       name: "国内媒体",
       type: "select",
-      icon: "🌍",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png",
       proxies: [
         "DIRECT",
         "香港节点",
@@ -168,7 +168,7 @@ function main(config) {
     {
       name: "谷歌FCM",
       type: "select",
-      icon: "📢",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -184,7 +184,7 @@ function main(config) {
     {
       name: "微软Bing",
       type: "select",
-      icon: "Ⓜ️",
+      icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -200,7 +200,7 @@ function main(config) {
     {
       name: "微软云盘",
       type: "select",
-      icon: "Ⓜ️",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -216,7 +216,7 @@ function main(config) {
     {
       name: "微软服务",
       type: "select",
-      icon: "Ⓜ️",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -232,7 +232,7 @@ function main(config) {
     {
       name: "苹果服务",
       type: "select",
-      icon: "🍎",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -248,7 +248,7 @@ function main(config) {
     {
       name: "游戏平台",
       type: "select",
-      icon: "🎮",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png",
       proxies: [
         "DIRECT",
         "节点选择",
@@ -264,26 +264,26 @@ function main(config) {
     {
       name: "网易音乐",
       type: "select",
-      icon: "🎶",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netease_Music.png",
       proxies: ["DIRECT", "节点选择", "自动选择"],
       filter: "(?i)网易|音乐|解锁|Music|NetEase",
     },
     {
       name: "全球直连",
       type: "select",
-      icon: "🎯",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png",
       proxies: ["DIRECT", "节点选择", "自动选择"],
     },
     {
       name: "广告拦截",
       type: "select",
-      icon: "🛑",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png",
       proxies: ["REJECT", "DIRECT"],
     },
     {
       name: "应用净化",
       type: "select",
-      icon: "🍃",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hijacking.png",
       proxies: ["REJECT", "DIRECT"],
     },
     {
@@ -301,7 +301,7 @@ function main(config) {
     {
       name: "香港节点",
       type: "url-test",
-      icon: "🇭🇰",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -310,7 +310,7 @@ function main(config) {
     {
       name: "日本节点",
       type: "url-test",
-      icon: "🇯🇵",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -319,7 +319,7 @@ function main(config) {
     {
       name: "美国节点",
       type: "url-test",
-      icon: "🇺🇲",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -329,7 +329,7 @@ function main(config) {
     {
       name: "台湾节点",
       type: "url-test",
-      icon: "🇨🇳",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -338,7 +338,7 @@ function main(config) {
     {
       name: "狮城节点",
       type: "url-test",
-      icon: "🇸🇬",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -347,7 +347,7 @@ function main(config) {
     {
       name: "韩国节点",
       type: "url-test",
-      icon: "🇰🇷",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png",
       "include-all": true,
       url: "http://www.gstatic.com/generate_204",
       interval: 300,
@@ -356,14 +356,14 @@ function main(config) {
     {
       name: "奈飞节点",
       type: "select",
-      icon: "🎥",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png",
       "include-all": true,
       filter: "(?i)NF|奈飞|解锁|Netflix|NETFLIX|Media",
     },
     {
       name: "漏网之鱼",
       type: "select",
-      icon: "🐟",
+      icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png",
       proxies: [
         "节点选择",
         "自动选择",
