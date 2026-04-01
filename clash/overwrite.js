@@ -637,7 +637,7 @@ function main(config) {
   }
   // 设置规则
   config["rules"] = [
-    // "RULE-SET,mobai-direct,DIRECT",
+    "RULE-SET,mobai-direct,DIRECT",
     "RULE-SET,ACL4SSR-LocalAreaNetwork,全球直连",
     "RULE-SET,ACL4SSR-UnBan,全球直连",
     "RULE-SET,ACL4SSR-BanAD,广告拦截",
