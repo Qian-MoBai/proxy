@@ -353,7 +353,8 @@ proxy-groups:
   - name: 订阅信息
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Airport.png"
-    use: provider1
+    use:
+      - provider1
     <<: *info-filter
   - name: GLOBAL
     type: select
