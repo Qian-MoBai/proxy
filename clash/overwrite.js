@@ -389,7 +389,7 @@ function main(config) {
       type: "http",
       behavior: "classical",
       format: "yaml",
-      url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/direct.yaml",
+      url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/rules/direct.yaml",
       interval: 43200,
     },
     "ACL4SSR-LocalAreaNetwork": {
