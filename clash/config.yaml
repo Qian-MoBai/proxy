@@ -612,3 +612,18 @@ rule-providers:
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
     interval: 43200
+# 外部控制
+external-controller: 0.0.0.0:9090
+external-ui: ui
+external-ui-name: zashboard
+external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+# GeoSite
+geodata-mode: true
+geodata-loader: memconservative
+geo-auto-update: true
+geo-update-interval: 12
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
