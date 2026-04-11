@@ -218,7 +218,7 @@ proxy-groups:
   - name: 自动选择
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -226,7 +226,7 @@ proxy-groups:
   - name: 故障转移
     type: fallback
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Magic.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -235,7 +235,7 @@ proxy-groups:
     type: load-balance
     strategy: consistent-hashing
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Stack.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -458,7 +458,7 @@ proxy-groups:
   - name: 香港节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
-    url: "http://www.gstatic.com/generate_204"
+    url: "https://www.gstatic.com/generate_204"
     include-all: true
     interval: 300
     tolerance: 50
@@ -466,7 +466,7 @@ proxy-groups:
   - name: 日本节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Japan.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -474,7 +474,7 @@ proxy-groups:
   - name: 美国节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/United_States.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -483,7 +483,7 @@ proxy-groups:
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Taiwan.png"
     include-all: true
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     filter: "(?i)台|新北|彰化|TW|Taiwan"
@@ -491,14 +491,14 @@ proxy-groups:
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Singapore.png"
     include-all: true
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     interval: 300
     tolerance: 50
     filter: "(?i)新加坡|坡|狮城|SG|Singapore"
   - name: 韩国节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Korea.png"
-    url: http://www.gstatic.com/generate_204
+    url: https://www.gstatic.com/generate_204
     include-all: true
     interval: 300
     tolerance: 50
@@ -583,210 +583,245 @@ rule-providers:
     format: yaml
     url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/rules/direct.yaml"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-LocalAreaNetwork:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-UnBan:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BanAD:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BanProgramAD:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BanEasyList:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyList.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BanEasyListChina:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyListChina.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BanEasyPrivacy:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyPrivacy.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-GoogleFCM:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/GoogleFCM.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-GoogleCN:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-SteamCN:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Bing:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-OneDrive:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Microsoft:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Apple:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Telegram:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-AI:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/AI.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-OpenAi:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/OpenAi.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-NetEaseMusic:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/NetEaseMusic.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Epic:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Epic.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Origin:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Origin.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Sony:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Sony.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Steam:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Nintendo:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Nintendo.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-YouTube:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/YouTube.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Netflix:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Netflix.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Bahamut:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bahamut.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-BilibiliHMT:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/BilibiliHMT.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Bilibili:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bilibili.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-ChinaMedia:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-ProxyMedia:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-ProxyGFWlist:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-ChinaDomain:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-ChinaCompanyIp:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list"
     interval: 43200
+    proxy: DIRECT
   ACL4SSR-Download:
     type: http
     behavior: classical
     format: text
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
     interval: 43200
+    proxy: DIRECT
 # 外部控制
 external-controller: 127.0.0.1:9090
 external-ui: ui
