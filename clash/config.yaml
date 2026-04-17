@@ -432,30 +432,6 @@ proxy-groups:
       - DIRECT
       - 节点选择
       - 自动选择
-  - name: 广告拦截
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png"
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 应用净化
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hijacking.png"
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: AdBlock
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AdBlack.png"
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 隐私防护
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hijacking.png"
-    proxies:
-      - REJECT
-      - DIRECT
   - name: 香港节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
@@ -542,11 +518,11 @@ rules:
   - RULE-SET,mobai-direct,DIRECT
   - RULE-SET,ACL4SSR-LocalAreaNetwork,全球直连
   - RULE-SET,ACL4SSR-UnBan,全球直连
-  - RULE-SET,ACL4SSR-BanAD,广告拦截
-  - RULE-SET,ACL4SSR-BanProgramAD,应用净化
-  - RULE-SET,ACL4SSR-BanEasyList,AdBlock
-  - RULE-SET,ACL4SSR-BanEasyListChina,AdBlock
-  - RULE-SET,ACL4SSR-BanEasyPrivacy,隐私防护
+  - RULE-SET,ACL4SSR-BanAD,REJECT
+  - RULE-SET,ACL4SSR-BanProgramAD,REJECT
+  - RULE-SET,ACL4SSR-BanEasyList,REJECT
+  - RULE-SET,ACL4SSR-BanEasyListChina,REJECT
+  - RULE-SET,ACL4SSR-BanEasyPrivacy,REJECT
   - RULE-SET,ACL4SSR-GoogleFCM,谷歌FCM
   - RULE-SET,ACL4SSR-GoogleCN,全球直连
   - RULE-SET,ACL4SSR-SteamCN,全球直连
