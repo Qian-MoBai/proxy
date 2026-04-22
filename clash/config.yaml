@@ -1,4 +1,15 @@
 info-filter: &info-filter "(?i)套餐|到期|有效|剩余|版本|已用|过期|失联|测试|官方|网址|备用|群|TEST|客服|网站|获取|订阅|流量|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|如果|更新"
+cn-dns: &cn-dns
+  - https://223.5.5.5/dns-query
+  - https://doh.pub/dns-query
+  - 223.5.5.5
+  - 119.29.29.29
+non-cn-dns: &non-cn-dns
+  - https://1.1.1.1/dns-query
+  - https://dns.google/dns-query
+  - 8.8.8.8
+  - 1.1.1.1
+
 mode: rule
 # IPv6 总开关
 ipv6: true
@@ -25,155 +36,22 @@ tun:
 dns:
   enable: true
   cache-algorithm: arc
-  listen: "127.0.0.1:1053"
+  listen: "[::]:1053"
   # 是否解析 IPv6
   ipv6: true
+  direct-nameserver: *cn-dns
+  nameserver-policy:
+    "geosite:cn,private": *cn-dns
+    "geosite:win-update": *cn-dns
+    "geosite:geolocation-!cn": *non-cn-dns
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
-    - "*.lan"
-    - "*.localdomain"
-    - "*.example"
-    - "*.invalid"
-    - "*.localhost"
-    - "*.test"
-    - "*.local"
-    - "*.home.arpa"
-    - "*.direct"
-    - cable.auth.com
-    - network-test.debian.org
-    - detectportal.firefox.com
-    - resolver1.opendns.com
-    - global.turn.twilio.com
-    - global.stun.twilio.com
-    - app.yinxiang.com
-    - injections.adguard.org
-    - localhost.*.weixin.qq.com
-    - "*.blzstatic.cn"
-    - "*.cmpassport.com"
-    - id6.me
-    - open.e.189.cn
-    - opencloud.wostore.cn
-    - id.mail.wo.cn
-    - mdn.open.wo.cn
-    - hmrz.wo.cn
-    - nishub1.10010.com
-    - enrichgw.10010.com
-    - "*.wosms.cn"
-    - "*.jegotrip.com.cn"
-    - "*.icitymobile.mobi"
-    - "*.pingan.com.cn"
-    - "*.cmbchina.com"
-    - "*.10099.com.cn"
-    - "*.microdone.cn"
-    - PDC._msDCS.*.*
-    - DC._msDCS.*.*
-    - GC._msDCS.*.*
-    - time.*.com
-    - time.*.gov
-    - time.*.edu.cn
-    - time.*.apple.com
-    - time-ios.apple.com
-    - time1.*.com
-    - time2.*.com
-    - time3.*.com
-    - time4.*.com
-    - time5.*.com
-    - time6.*.com
-    - time7.*.com
-    - ntp.*.com
-    - ntp1.*.com
-    - ntp2.*.com
-    - ntp3.*.com
-    - ntp4.*.com
-    - ntp5.*.com
-    - ntp6.*.com
-    - ntp7.*.com
-    - "*.time.edu.cn"
-    - "*.ntp.org.cn"
-    - +.pool.ntp.org
-    - time1.cloud.tencent.com
-    - music.163.com
-    - "*.music.163.com"
-    - "*.126.net"
-    - musicapi.taihe.com
-    - music.taihe.com
-    - songsearch.kugou.com
-    - trackercdn.kugou.com
-    - "*.kuwo.cn"
-    - api-jooxtt.sanook.com
-    - api.joox.com
-    - joox.com
-    - y.qq.com
-    - "*.y.qq.com"
-    - streamoc.music.tc.qq.com
-    - mobileoc.music.tc.qq.com
-    - isure.stream.qqmusic.qq.com
-    - dl.stream.qqmusic.qq.com
-    - aqqmusic.tc.qq.com
-    - amobile.music.tc.qq.com
-    - "*.xiami.com"
-    - "*.music.migu.cn"
-    - music.migu.cn
-    - +.msftconnecttest.com
-    - +.msftncsi.com
-    - localhost.ptlogin2.qq.com
-    - localhost.sec.qq.com
-    - +.qq.com
-    - +.tencent.com
-    - +.srv.nintendo.net
-    - "*.n.n.srv.nintendo.net"
-    - +.cdn.nintendo.net
-    - +.stun.playstation.net
-    - xbox.*.*.microsoft.com
-    - "*.*.xboxlive.com"
-    - xbox.*.microsoft.com
-    - xnotify.xboxlive.com
-    - +.battle.net
-    - +.battlenet.com.cn
-    - +.wotgame.cn
-    - +.wggames.cn
-    - +.wowsgame.cn
-    - +.wargaming.net
-    - proxy.golang.org
-    - stun.*.*
-    - stun.*.*.*
-    - +.stun.*.*
-    - +.stun.*.*.*
-    - +.stun.*.*.*.*
-    - +.stun.*.*.*.*.*
-    - heartbeat.belkin.com
-    - "*.linksys.com"
-    - "*.linksyssmartwifi.com"
-    - "*.router.asus.com"
-    - mesu.apple.com
-    - swscan.apple.com
-    - swquery.apple.com
-    - swdownload.apple.com
-    - swcdn.apple.com
-    - swdist.apple.com
-    - lens.l.google.com
-    - stun.l.google.com
-    - na.b.g-tun.com
-    - +.nflxvideo.net
-    - "*.square-enix.com"
-    - "*.finalfantasyxiv.com"
-    - "*.ffxiv.com"
-    - "*.ff14.sdo.com"
-    - ff.dorado.sdo.com
-    - "*.mcdn.bilivideo.cn"
-    - +.media.dssott.com
-    - shark007.net
-    - Mijia Cloud
-    - +.cmbchina.com
-    - +.cmbimg.com
-    - local.adguard.org
-    - +.sandai.net
-    - +.n0808.com
-    - +.uu.163.com
-    - ps.res.netease.com
-    - +.pub.3gppnetwork.org
-    - checkip.dyndns.com
+    - "geosite:private"
+    - "geosite:category-ntp"
+    - "geosite:connectivity-check"
+    - "geosite:tracker"
+    - "geosite:cn"
     - +.qianmobai.top
   fake-ip-filter-mode: blacklist
 # 代理集
@@ -200,7 +78,7 @@ proxy-groups:
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Proxy.png"
     proxies:
-      - 自动选择
+      - 自动切换
       - 故障转移
       - 负载均衡
       - 香港节点
@@ -216,7 +94,7 @@ proxy-groups:
     icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png"
     include-all: true
     exclude-filter: *info-filter
-  - name: 自动选择
+  - name: 自动切换
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Auto.png"
     url: https://www.gstatic.com/generate_204
@@ -241,26 +119,12 @@ proxy-groups:
     interval: 300
     tolerance: 50
     exclude-filter: *info-filter
-  - name: 电报消息
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png"
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
-      - DIRECT
   - name: Ai平台
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/AI.png"
     proxies:
       - 节点选择
-      - 自动选择
+      - 自动切换
       - 香港节点
       - 台湾节点
       - 狮城节点
@@ -269,131 +133,22 @@ proxy-groups:
       - 韩国节点
       - 手动切换
       - DIRECT
-  - name: 油管视频
+  - name: Win更新
     type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png"
+    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Windows.png"
     proxies:
-      - "节点选择"
-      - "自动选择"
-      - "香港节点"
-      - "台湾节点"
-      - "狮城节点"
-      - "日本节点"
-      - "美国节点"
-      - "韩国节点"
-      - "手动切换"
-      - "DIRECT"
-  - name: 奈飞视频
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png"
-    proxies:
-      - "奈飞节点"
-      - "节点选择"
-      - "自动选择"
-      - "故障转移"
-      - "负载均衡"
-      - "香港节点"
-      - "台湾节点"
-      - "狮城节点"
-      - "日本节点"
-      - "美国节点"
-      - "韩国节点"
-      - "手动切换"
-      - "DIRECT"
-  - name: 巴哈姆特
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Bahamut.png"
-    proxies:
-      - 节点选择
-      - 台湾节点
-      - 手动切换
       - DIRECT
+      - REJECT
   - name: 哔哩哔哩
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"
     proxies:
-      - 全球直连
-      - 台湾节点
-      - 香港节点
-  - name: 国外媒体
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/mini/GlobalMedia.png"
-    proxies:
-      - 节点选择
-      - 自动选择
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 美国节点
-      - 韩国节点
-      - 手动切换
       - DIRECT
-  - name: 国内媒体
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/DomesticMedia.png"
-    proxies:
-      - DIRECT
-      - 香港节点
       - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 手动切换
+      - 香港节点
   - name: 谷歌FCM
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-  - name: 微软Bing
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/bing.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-  - name: 微软云盘
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/OneDrive.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-  - name: 微软服务
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
-  - name: 苹果服务
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png"
     proxies:
       - DIRECT
       - 节点选择
@@ -417,21 +172,6 @@ proxy-groups:
       - 日本节点
       - 韩国节点
       - 手动切换
-  - name: 网易音乐
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netease_Music.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
-    filter: "(?i)网易|音乐|解锁|Music|NetEase"
-  - name: 全球直连
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 自动选择
   - name: 香港节点
     type: url-test
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Hong_Kong.png"
@@ -480,17 +220,12 @@ proxy-groups:
     interval: 300
     tolerance: 50
     filter: "(?i)KR|Korea|KOR|首尔|韩|韓"
-  - name: 奈飞节点
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png"
-    include-all: true
-    filter: "(?i)NF|奈飞|解锁|Netflix|NETFLIX|Media"
   - name: 漏网之鱼
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png"
     proxies:
       - 节点选择
-      - 自动选择
+      - 自动切换
       - 故障转移
       - 负载均衡
       - 香港节点
@@ -515,42 +250,32 @@ proxy-groups:
     exclude-filter: *info-filter
 # 规则
 rules:
+  # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
-  - RULE-SET,ACL4SSR-LocalAreaNetwork,全球直连
-  - RULE-SET,ACL4SSR-UnBan,全球直连
-  - RULE-SET,ACL4SSR-BanAD,REJECT
-  - RULE-SET,ACL4SSR-BanProgramAD,REJECT
-  - RULE-SET,ACL4SSR-BanEasyList,REJECT
-  - RULE-SET,ACL4SSR-BanEasyListChina,REJECT
-  - RULE-SET,ACL4SSR-BanEasyPrivacy,REJECT
-  - RULE-SET,ACL4SSR-GoogleFCM,谷歌FCM
-  - RULE-SET,ACL4SSR-GoogleCN,全球直连
-  - RULE-SET,ACL4SSR-SteamCN,全球直连
-  - RULE-SET,ACL4SSR-Bing,微软Bing
-  - RULE-SET,ACL4SSR-OneDrive,微软云盘
-  - RULE-SET,ACL4SSR-Microsoft,微软服务
-  - RULE-SET,ACL4SSR-Apple,苹果服务
-  - RULE-SET,ACL4SSR-Telegram,电报消息
-  - RULE-SET,ACL4SSR-AI,Ai平台
-  - RULE-SET,ACL4SSR-OpenAi,Ai平台
-  - RULE-SET,ACL4SSR-NetEaseMusic,网易音乐
-  - RULE-SET,ACL4SSR-Epic,游戏平台
-  - RULE-SET,ACL4SSR-Origin,游戏平台
-  - RULE-SET,ACL4SSR-Sony,游戏平台
-  - RULE-SET,ACL4SSR-Steam,游戏平台
-  - RULE-SET,ACL4SSR-Nintendo,游戏平台
-  - RULE-SET,ACL4SSR-YouTube,油管视频
-  - RULE-SET,ACL4SSR-Netflix,奈飞视频
-  - RULE-SET,ACL4SSR-Bahamut,巴哈姆特
-  - RULE-SET,ACL4SSR-BilibiliHMT,哔哩哔哩
-  - RULE-SET,ACL4SSR-Bilibili,哔哩哔哩
-  - RULE-SET,ACL4SSR-ChinaMedia,国内媒体
-  - RULE-SET,ACL4SSR-ProxyMedia,国外媒体
-  - RULE-SET,ACL4SSR-ProxyGFWlist,节点选择
-  - RULE-SET,ACL4SSR-ChinaDomain,全球直连
-  - RULE-SET,ACL4SSR-ChinaCompanyIp,全球直连
-  - RULE-SET,ACL4SSR-Download,全球直连
-  - GEOIP,CN,全球直连
+  - RULE-SET,ACL4SSR-UnBan,DIRECT
+  # GEOSITE
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,private,DIRECT
+  - GEOSITE,tracker,DIRECT
+  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,win-update,Win更新
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,onedrive,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,steam,游戏平台
+  - GEOSITE,epicgames,游戏平台
+  - GEOSITE,ea,游戏平台
+  - GEOSITE,openai,Ai平台
+  - GEOSITE,googlefcm,谷歌FCM
+  - GEOSITE,bilibili,哔哩哔哩
+  - GEOSITE,biliintl,哔哩哔哩
+  - GEOSITE,geolocation-!cn,节点选择
+  - GEOSITE,cn,DIRECT
+  # GEOIP
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT
   - MATCH,漏网之鱼
 # 规则集
 rule-providers:
@@ -561,13 +286,6 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/rules/direct.yaml"
     interval: 43200
     proxy: DIRECT
-  ACL4SSR-LocalAreaNetwork:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/LocalAreaNetwork.list"
-    interval: 43200
-    proxy: DIRECT
   ACL4SSR-UnBan:
     type: http
     behavior: classical
@@ -575,238 +293,14 @@ rule-providers:
     url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list"
     interval: 43200
     proxy: DIRECT
-  ACL4SSR-BanAD:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanAD.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-BanProgramAD:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanProgramAD.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-BanEasyList:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyList.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-BanEasyListChina:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyListChina.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-BanEasyPrivacy:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/BanEasyPrivacy.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-GoogleFCM:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/GoogleFCM.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-GoogleCN:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/GoogleCN.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-SteamCN:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/SteamCN.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Bing:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Bing.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-OneDrive:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/OneDrive.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Microsoft:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Microsoft.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Apple:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Apple.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Telegram:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Telegram.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-AI:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/AI.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-OpenAi:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/OpenAi.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-NetEaseMusic:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/NetEaseMusic.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Epic:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Epic.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Origin:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Origin.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Sony:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Sony.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Steam:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Steam.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Nintendo:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Nintendo.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-YouTube:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/YouTube.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Netflix:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Netflix.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Bahamut:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bahamut.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-BilibiliHMT:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/BilibiliHMT.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Bilibili:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Ruleset/Bilibili.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-ChinaMedia:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaMedia.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-ProxyMedia:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyMedia.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-ProxyGFWlist:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ProxyGFWlist.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-ChinaDomain:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaDomain.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-ChinaCompanyIp:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/ChinaCompanyIp.list"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-Download:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Download.list"
-    interval: 43200
-    proxy: DIRECT
 # 外部控制
 external-controller: 127.0.0.1:9090
 external-ui: ui
 external-ui-name:
-external-ui-url: "https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
+external-ui-url: "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip"
 profile:
   # 储存 API 对策略组的选择，以供下次启动时使用
-  store-selected: true
+  store-selected: false
   # 储存 fakeip 映射表
   store-fake-ip: true
 # GeoSite
