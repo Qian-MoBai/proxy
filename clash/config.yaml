@@ -1,14 +1,14 @@
 info-filter: &info-filter "(?i)套餐|到期|有效|剩余|版本|已用|过期|失联|测试|官方|网址|备用|群|TEST|客服|网站|获取|订阅|流量|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|如果|更新"
 cn-dns: &cn-dns
-  - https://223.5.5.5/dns-query
-  - https://doh.pub/dns-query
   - 223.5.5.5
   - 119.29.29.29
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
 non-cn-dns: &non-cn-dns
-  - https://1.1.1.1/dns-query
-  - https://dns.google/dns-query
   - 8.8.8.8
   - 1.1.1.1
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
 
 mode: rule
 # IPv6 总开关
@@ -93,6 +93,7 @@ proxy-groups:
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png"
     include-all: true
+    lazy: false
     exclude-filter: *info-filter
   - name: 自动切换
     type: url-test
@@ -101,6 +102,7 @@ proxy-groups:
     include-all: true
     interval: 300
     tolerance: 50
+    lazy: false
     exclude-filter: *info-filter
   - name: 故障转移
     type: fallback
@@ -270,11 +272,12 @@ rules:
   - GEOSITE,epicgames,游戏平台
   - GEOSITE,ea,游戏平台
   - GEOSITE,openai,Ai平台
+  - GEOSITE,category-ai-!cn,Ai平台
   - GEOSITE,googlefcm,谷歌FCM
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,biliintl,哔哩哔哩
-  - GEOSITE,geolocation-!cn,节点选择
   - GEOSITE,cn,DIRECT
+  - GEOSITE,geolocation-!cn,节点选择
   # GEOIP
   - GEOIP,private,DIRECT,no-resolve
   - GEOIP,CN,DIRECT
