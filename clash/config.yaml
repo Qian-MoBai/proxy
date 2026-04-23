@@ -9,6 +9,20 @@ non-cn-dns: &non-cn-dns
   - 1.1.1.1
   - https://cloudflare-dns.com/dns-query
   - https://dns.google/dns-query
+proxy-provider-template: &proxy-provider-template
+  type: http
+  interval: 43200
+  proxy: DIRECT
+  header:
+    User-Agent:
+      - "clash.meta"
+      - "mihomo/1.19.24"
+  health-check:
+    enable: true
+    lazy: false
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
 
 mode: rule
 # IPv6 总开关
@@ -57,21 +71,9 @@ dns:
 # 代理集
 proxy-providers:
   provider1:
-    type: http
+    <<: *proxy-provider-template
     # 填写订阅地址
     url:
-    # 12 小时更新
-    interval: 43200
-    proxy: DIRECT
-    header:
-      User-Agent:
-        - "clash.meta"
-        - "mihomo/1.19.23"
-    health-check:
-      enable: true
-      url: https://www.gstatic.com/generate_204
-      interval: 300
-      timeout: 5000
 # 代理组
 proxy-groups:
   - name: 节点选择
@@ -93,7 +95,6 @@ proxy-groups:
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png"
     include-all: true
-    lazy: false
     exclude-filter: *info-filter
   - name: 自动切换
     type: url-test
@@ -102,7 +103,6 @@ proxy-groups:
     include-all: true
     interval: 300
     tolerance: 50
-    lazy: false
     exclude-filter: *info-filter
   - name: 故障转移
     type: fallback
@@ -254,7 +254,6 @@ proxy-groups:
 rules:
   # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
-  - RULE-SET,ACL4SSR-UnBan,DIRECT
   # GEOSITE
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,connectivity-check,DIRECT
@@ -289,13 +288,6 @@ rule-providers:
     behavior: classical
     format: yaml
     url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/rules/clash/rules/direct.yaml"
-    interval: 43200
-    proxy: DIRECT
-  ACL4SSR-UnBan:
-    type: http
-    behavior: classical
-    format: text
-    url: "https://testingcf.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/UnBan.list"
     interval: 43200
     proxy: DIRECT
 # 外部控制
