@@ -1,7 +1,6 @@
 payload:
   # Port
-  - DST-PORT,22
-  - SRC-PORT,22
+  - OR,((DST-PORT,22),(SRC-PORT,22))
   - AND,((NETWORK,UDP),(OR,(SRC-PORT,9993)(DST-PORT,9993)))
   # Windows NTP
   - DOMAIN,time.windows.com
@@ -12,6 +11,8 @@ payload:
   - DOMAIN-SUFFIX,ubi.com
   # Cloudflare API
   - DOMAIN,api.cloudflare.com
+  # Mahjong Soul
+  - DOMAIN-SUFFIX,maj-soul.com
   # NPM Taobao mirror
   - DOMAIN-SUFFIX,npmmirror.com
   # ASUS
