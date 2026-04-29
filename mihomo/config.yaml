@@ -68,6 +68,9 @@ dns:
     - "geosite:connectivity-check"
     - "geosite:tracker"
     - "geosite:cn"
+    # Google play
+    - "+.googleapis.cn"
+    - "+.xn--ngstr-lra8j.com"
     - +.qianmobai.top
   fake-ip-filter-mode: blacklist
 # 代理集
@@ -256,6 +259,8 @@ proxy-groups:
 rules:
   # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
+  # DOMAIN-SUFFIX
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,DIRECT
   # GEOSITE
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,connectivity-check,DIRECT
