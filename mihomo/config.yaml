@@ -69,8 +69,7 @@ dns:
     - "geosite:tracker"
     - "geosite:cn"
     # Google play
-    - "+.googleapis.cn"
-    - "+.xn--ngstr-lra8j.com"
+    - "geosite:google"
     - +.qianmobai.top
   fake-ip-filter-mode: blacklist
 # 代理集
@@ -140,12 +139,6 @@ proxy-groups:
       - 韩国节点
       - 手动切换
       - DIRECT
-  - name: Win更新
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Windows.png"
-    proxies:
-      - DIRECT
-      - REJECT
   - name: 哔哩哔哩
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"
@@ -153,19 +146,6 @@ proxy-groups:
       - DIRECT
       - 台湾节点
       - 香港节点
-  - name: 谷歌FCM
-    type: select
-    icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google_Search.png"
-    proxies:
-      - DIRECT
-      - 节点选择
-      - 美国节点
-      - 香港节点
-      - 台湾节点
-      - 狮城节点
-      - 日本节点
-      - 韩国节点
-      - 手动切换
   - name: 游戏平台
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Game.png"
@@ -259,16 +239,15 @@ proxy-groups:
 rules:
   # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
-  # DOMAIN-SUFFIX
-  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,DIRECT
   # GEOSITE
+  - GEOSITE,google,节点选择
+  - GEOSITE,android,DIRECT
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,connectivity-check,DIRECT
   - GEOSITE,category-ntp,DIRECT
   - GEOSITE,private,DIRECT
   - GEOSITE,tracker,DIRECT
   - GEOSITE,google-cn,DIRECT
-  - GEOSITE,win-update,Win更新
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,onedrive,DIRECT
   - GEOSITE,apple-cn,DIRECT
@@ -279,14 +258,13 @@ rules:
   - GEOSITE,ea,游戏平台
   - GEOSITE,openai,Ai平台
   - GEOSITE,category-ai-!cn,Ai平台
-  - GEOSITE,googlefcm,谷歌FCM
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,biliintl,哔哩哔哩
   - GEOSITE,cn,DIRECT
   - GEOSITE,geolocation-!cn,节点选择
   # GEOIP
   - GEOIP,private,DIRECT,no-resolve
-  - GEOIP,CN,DIRECT
+  - GEOIP,CN,DIRECT,no-resolve
   - MATCH,漏网之鱼
 # 规则集
 rule-providers:
