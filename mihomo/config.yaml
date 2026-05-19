@@ -14,10 +14,6 @@ proxy-provider-template: &proxy-provider-template
   type: http
   interval: 43200
   proxy: DIRECT
-  header:
-    User-Agent:
-      - "clash.meta"
-      - "mihomo/1.19.24"
   health-check:
     enable: true
     lazy: false
@@ -68,8 +64,6 @@ dns:
     - "geosite:connectivity-check"
     - "geosite:tracker"
     - "geosite:cn"
-    # Google play
-    - "geosite:google"
     - +.qianmobai.top
   fake-ip-filter-mode: blacklist
 # 代理集
@@ -240,14 +234,12 @@ rules:
   # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
   # GEOSITE
-  - GEOSITE,google,节点选择
-  - GEOSITE,android,DIRECT
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,connectivity-check,DIRECT
   - GEOSITE,category-ntp,DIRECT
   - GEOSITE,private,DIRECT
   - GEOSITE,tracker,DIRECT
-  - GEOSITE,google-cn,DIRECT
+  - GEOSITE,win-update,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,onedrive,DIRECT
   - GEOSITE,apple-cn,DIRECT
