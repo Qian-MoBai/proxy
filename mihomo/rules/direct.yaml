@@ -12,6 +12,8 @@ payload:
   - DOMAIN-SUFFIX,npmmirror.com
   # ASUS
   - DOMAIN-KEYWORD,asus
+  # 智校乐
+  - DOMAIN-SUFFIX,zhixiaole.net
   # BitTorrent Trackers based on https://cf.trackerslist.com/all.txt
   - DOMAIN-SUFFIX,004430.xyz
   - DOMAIN-SUFFIX,abcvg.info
