@@ -14,6 +14,8 @@ payload:
   - DOMAIN-KEYWORD,asus
   # 智校乐
   - DOMAIN-SUFFIX,zhixiaole.net
+  # 崩坏三扫码器 by Hao_cen
+  - DOMAIN-SUFFIX,hellocraft.xyz
   # BitTorrent Trackers based on https://cf.trackerslist.com/all.txt
   - DOMAIN-SUFFIX,004430.xyz
   - DOMAIN-SUFFIX,abcvg.info
