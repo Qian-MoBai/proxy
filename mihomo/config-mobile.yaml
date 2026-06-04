@@ -1,0 +1,151 @@
+# 变量 | 模板
+info-filter: &info-filter "(?i)套餐|到期|有效|剩余|版本|已用|过期|失联|测试|官方|网址|备用|群|TEST|客服|网站|获取|订阅|流量|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|如果|更新"
+cn-dns: &cn-dns
+  - 223.5.5.5
+  - 119.29.29.29
+  - https://dns.alidns.com/dns-query
+  - https://doh.pub/dns-query
+non-cn-dns: &non-cn-dns
+  - 8.8.8.8
+  - 1.1.1.1
+  - https://cloudflare-dns.com/dns-query
+  - https://dns.google/dns-query
+proxy-provider-template: &proxy-provider-template
+  type: http
+  interval: 43200
+  proxy: DIRECT
+  health-check:
+    enable: true
+    lazy: false
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    timeout: 5000
+
+# mihomo配置
+mode: rule
+# IPv6 总开关
+ipv6: true
+log-level: warning
+find-process-mode: strict
+unified-delay: true
+tcp-concurrent: true
+# 代理端口
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+redir-port: 7893
+tproxy-port: 7894
+# DNS 配置
+dns:
+  enable: true
+  cache-algorithm: arc
+  listen: "[::]:1053"
+  # 是否解析 IPv6
+  ipv6: true
+  direct-nameserver: *cn-dns
+  nameserver-policy:
+    "geosite:cn,private,google-cn": *cn-dns
+    "geosite:win-update": *cn-dns
+    "geosite:geolocation-!cn": *non-cn-dns
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "geosite:private"
+    - "geosite:category-ntp"
+    - "geosite:connectivity-check"
+    - "geosite:tracker"
+    - "geosite:cn"
+  fake-ip-filter-mode: blacklist
+# 代理集
+proxy-providers:
+  provider1:
+    <<: *proxy-provider-template
+    # 填写订阅地址
+    url:
+# 代理组
+proxy-groups:
+  - name: 节点选择
+    type: select
+    proxies:
+      - 自动切换
+      - 故障转移
+      - 负载均衡
+      - 手动切换
+  - name: 手动切换
+    type: select
+    include-all: true
+    exclude-filter: *info-filter
+  - name: 自动切换
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    include-all: true
+    interval: 300
+    tolerance: 50
+    exclude-filter: *info-filter
+  - name: 故障转移
+    type: fallback
+    url: https://www.gstatic.com/generate_204
+    include-all: true
+    interval: 300
+    tolerance: 50
+    exclude-filter: *info-filter
+  - name: 负载均衡
+    type: load-balance
+    strategy: consistent-hashing
+    url: https://www.gstatic.com/generate_204
+    include-all: true
+    interval: 300
+    tolerance: 50
+    exclude-filter: *info-filter
+  - name: 订阅信息
+    type: select
+    include-all: true
+    filter: *info-filter
+# 规则
+rules:
+  # RULE-SET
+  - RULE-SET,mobai-direct,DIRECT
+  # GEOSITE
+  - GEOSITE,category-ads-all,REJECT
+  - GEOSITE,connectivity-check,DIRECT
+  - GEOSITE,category-ntp,DIRECT
+  - GEOSITE,private,DIRECT
+  - GEOSITE,tracker,DIRECT
+  - GEOSITE,googlefcm,DIRECT
+  - GEOSITE,microsoft@cn,DIRECT
+  - GEOSITE,onedrive,DIRECT
+  - GEOSITE,apple-cn,DIRECT
+  - GEOSITE,steam@cn,DIRECT
+  - GEOSITE,category-games@cn,DIRECT
+  - GEOSITE,steam,节点选择
+  - GEOSITE,epicgames,节点选择
+  - GEOSITE,ea,节点选择
+  - GEOSITE,openai,节点选择
+  - GEOSITE,category-ai-!cn,节点选择
+  - GEOSITE,bilibili,DIRECT
+  - GEOSITE,biliintl,DIRECT
+  - GEOSITE,cn,DIRECT
+  - GEOSITE,geolocation-!cn,节点选择
+  # GEOIP
+  - GEOIP,private,DIRECT,no-resolve
+  - GEOIP,CN,DIRECT,no-resolve
+  - MATCH,节点选择
+# 规则集
+rule-providers:
+  mobai-direct:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://testingcf.jsdelivr.net/gh/Qian-MoBai/proxy/mihomo/rules/direct.yaml"
+    interval: 43200
+    proxy: DIRECT
+# GeoSite
+geodata-mode: true
+geodata-loader: memconservative
+geo-auto-update: true
+geo-update-interval: 12
+geox-url:
+  geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
+  geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
+  mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
+  asn: "https://gh-proxy.org/https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
