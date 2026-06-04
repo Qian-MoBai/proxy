@@ -53,7 +53,7 @@ dns:
   ipv6: true
   direct-nameserver: *cn-dns
   nameserver-policy:
-    "geosite:cn,private": *cn-dns
+    "geosite:cn,private,google-cn": *cn-dns
     "geosite:win-update": *cn-dns
     "geosite:geolocation-!cn": *non-cn-dns
   enhanced-mode: fake-ip
@@ -240,6 +240,7 @@ rules:
   - GEOSITE,private,DIRECT
   - GEOSITE,tracker,DIRECT
   - GEOSITE,win-update,DIRECT
+  - GEOSITE,googlefcm,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
   - GEOSITE,onedrive,DIRECT
   - GEOSITE,apple-cn,DIRECT
