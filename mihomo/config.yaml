@@ -14,12 +14,6 @@ proxy-provider-template: &proxy-provider-template
   type: http
   interval: 43200
   proxy: DIRECT
-  health-check:
-    enable: true
-    lazy: false
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    timeout: 5000
 
 # mihomo配置
 mode: rule
@@ -55,6 +49,7 @@ dns:
   nameserver-policy:
     "geosite:cn,private,google-cn": *cn-dns
     "geosite:win-update": *cn-dns
+    "geosite:google,youtube": *non-cn-dns
     "geosite:geolocation-!cn": *non-cn-dns
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
@@ -88,7 +83,6 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 手动切换
-      - DIRECT
   - name: 手动切换
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/shindgewongxj/WHATSINStash@master/icon/select.png"
@@ -132,7 +126,6 @@ proxy-groups:
       - 美国节点
       - 韩国节点
       - 手动切换
-      - DIRECT
   - name: 哔哩哔哩
     type: select
     icon: "https://testingcf.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png"
@@ -238,6 +231,8 @@ rules:
   - GEOSITE,connectivity-check,DIRECT
   - GEOSITE,category-ntp,DIRECT
   - GEOSITE,private,DIRECT
+  - DOMAIN-SUFFIX,services.googleapis.cn,节点选择
+  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点选择
   - GEOSITE,tracker,DIRECT
   - GEOSITE,win-update,DIRECT
   - GEOSITE,googlefcm,DIRECT
@@ -253,8 +248,8 @@ rules:
   - GEOSITE,category-ai-!cn,Ai平台
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,biliintl,哔哩哔哩
-  - GEOSITE,cn,DIRECT
   - GEOSITE,geolocation-!cn,节点选择
+  - GEOSITE,cn,DIRECT
   # GEOIP
   - GEOIP,private,DIRECT,no-resolve
   - GEOIP,CN,DIRECT,no-resolve
