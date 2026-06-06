@@ -248,6 +248,7 @@ rules:
   - GEOSITE,category-ai-!cn,Ai平台
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,biliintl,哔哩哔哩
+  - GEOSITE,youtube,节点选择
   - GEOSITE,geolocation-!cn,节点选择
   - GEOSITE,cn,DIRECT
   # GEOIP
