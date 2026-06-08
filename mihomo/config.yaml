@@ -249,6 +249,7 @@ rules:
   - GEOSITE,bilibili,哔哩哔哩
   - GEOSITE,biliintl,哔哩哔哩
   - GEOSITE,youtube,节点选择
+  - GEOSITE,tiktok,节点选择
   - GEOSITE,geolocation-!cn,节点选择
   - GEOSITE,cn,DIRECT
   # GEOIP
