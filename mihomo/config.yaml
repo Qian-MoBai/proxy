@@ -234,6 +234,8 @@ rules:
   - DOMAIN-SUFFIX,services.googleapis.cn,节点选择
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,节点选择
   - GEOSITE,tracker,DIRECT
+  - GEOSITE,jetbrains-ai,Ai平台
+  - GEOSITE,jetbrains,DIRECT
   - GEOSITE,win-update,DIRECT
   - GEOSITE,googlefcm,DIRECT
   - GEOSITE,microsoft@cn,DIRECT
