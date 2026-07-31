@@ -45,12 +45,15 @@ dns:
   listen: "[::]:1053"
   # 是否解析 IPv6
   ipv6: true
+  respect-rules: true
   direct-nameserver: *cn-dns
+  nameserver: *cn-dns
   nameserver-policy:
-    "geosite:cn,private,google-cn": *cn-dns
+    "geosite:cn,private,google-cn,category-games": *cn-dns
     "geosite:win-update": *cn-dns
     "geosite:google,youtube": *non-cn-dns
     "geosite:geolocation-!cn": *non-cn-dns
+  proxy-server-nameserver: *cn-dns
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -242,10 +245,10 @@ rules:
   - GEOSITE,onedrive,DIRECT
   - GEOSITE,apple-cn,DIRECT
   - GEOSITE,steam@cn,DIRECT
-  - GEOSITE,category-games@cn,DIRECT
   - GEOSITE,steam,游戏平台
   - GEOSITE,epicgames,游戏平台
   - GEOSITE,ea,游戏平台
+  - GEOSITE,category-games,DIRECT
   - GEOSITE,openai,Ai平台
   - GEOSITE,category-ai-!cn,Ai平台
   - GEOSITE,bilibili,哔哩哔哩
@@ -286,4 +289,4 @@ geox-url:
   geoip: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"
   geosite: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"
   mmdb: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"
-  asn: "https://github.com/xishang0128/geoip/releases/download/latest/GeoLite2-ASN.mmdb"
+  asn: "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"
