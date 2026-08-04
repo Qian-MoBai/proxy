@@ -1,0 +1,30 @@
+{
+  "$schema": "https://sing-box.sagernet.org/schema.json",
+  "log": {
+    "disabled": false,
+    "level": "info",
+    "timestamp": true,
+    "output": "/var/log/sing-box.log"
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "https",
+        "tag": "google-dns",
+        "server": "8.8.8.8",
+        "server_port": 443,
+        "path": "/dns-query"
+      }
+    ]
+  },
+  "inbounds": [],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct-out"
+    }
+  ],
+  "route": {
+    "final": "direct-out"
+  }
+}
