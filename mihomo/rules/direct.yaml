@@ -12,8 +12,6 @@ payload:
   - DOMAIN-SUFFIX,npmmirror.com
   # ASUS
   - DOMAIN-KEYWORD,asus
-  # 某不知名网站
-  - IP-CIDR,43.134.8.151/32,no-resolve
   # 智校乐
   - DOMAIN-SUFFIX,zhixiaole.net
   # 崩坏三扫码器 by Hao_cen
