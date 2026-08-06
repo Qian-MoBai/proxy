@@ -13,7 +13,7 @@
         "server": "223.5.5.5",
         "server_port": 443,
         "path": "/dns-query",
-        "detour": "DIRECT"
+        "detour": "direct"
       },
       {
         "type": "https",
@@ -105,11 +105,11 @@
   "outbounds": [
     {
       "type": "direct",
-      "tag": "DIRECT"
+      "tag": "direct"
     },
     {
       "type": "block",
-      "tag": "REJECT"
+      "tag": "block"
     },
     {
       "type": "selector",
@@ -122,29 +122,29 @@
       "url": "https://www.gstatic.com/generate_204",
       "interval": "5m",
       "tolerance": 50,
-      "outbounds": ["DIRECT"]
+      "outbounds": ["direct"]
     },
     {
       "type": "selector",
       "tag": "手动切换",
-      "outbounds": ["DIRECT"]
+      "outbounds": ["direct"]
     },
     {
       "type": "selector",
       "tag": "游戏平台",
-      "outbounds": ["DIRECT", "节点选择"]
+      "outbounds": ["direct", "节点选择"]
     },
     {
       "type": "selector",
       "tag": "漏网之鱼",
-      "outbounds": ["节点选择", "DIRECT"]
+      "outbounds": ["节点选择", "direct"]
     }
   ],
   "route": {
     "rules": [
       {
         "rule_set": "geosite-category-ads-all",
-        "outbound": "REJECT"
+        "outbound": "block"
       },
       {
         "ip_is_private": true,
@@ -154,7 +154,7 @@
           "geosite-private",
           "geosite-tracker"
         ],
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "domain_suffix": ["services.googleapis.cn", "xn--ngstr-lra8j.com"],
@@ -166,15 +166,15 @@
       },
       {
         "rule_set": "geosite-jetbrains",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geosite-win-update",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geosite-googlefcm",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": [
@@ -182,11 +182,11 @@
           "geosite-onedrive",
           "geosite-apple-cn"
         ],
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geosite-steam@cn",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": ["geosite-steam", "geosite-epicgames", "geosite-ea"],
@@ -194,7 +194,7 @@
       },
       {
         "rule_set": "geosite-category-games",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geosite-category-ai-!cn",
@@ -202,7 +202,7 @@
       },
       {
         "rule_set": "geosite-bilibili",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geosite-geolocation-!cn",
@@ -210,11 +210,11 @@
       },
       {
         "rule_set": "geosite-cn",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       },
       {
         "rule_set": "geoip-cn",
-        "outbound": "DIRECT"
+        "outbound": "direct"
       }
     ],
     "rule_set": [
@@ -353,7 +353,7 @@
       },
       {
         "type": "remote",
-        "tag": "geolocation-!cn",
+        "tag": "geosite-geolocation-!cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/geolocation-!cn.srs",
         "update_interval": "12h"
@@ -385,7 +385,7 @@
       "external_controller": "127.0.0.1:9090",
       "external_ui": "ui",
       "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
-      "external_ui_download_detour": "DIRECT",
+      "external_ui_download_detour": "direct",
       "secret": "",
       "default_mode": "rule"
     }
