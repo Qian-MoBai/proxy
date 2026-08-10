@@ -44,7 +44,8 @@ dns:
   # 是否解析 IPv6
   ipv6: true
   respect-rules: true
-  default-nameserver: tls://223.5.5.5
+  default-nameserver:
+    - tls://223.5.5.5
   nameserver: *cn-dns-domain
   nameserver-policy:
     "geosite:cn,private,google-cn,category-games": *cn-dns-domain
