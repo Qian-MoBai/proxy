@@ -1,13 +1,11 @@
 # 变量 | 模板
 info-filter: &info-filter "(?i)套餐|到期|有效|剩余|版本|已用|过期|失联|测试|官方|网址|备用|群|TEST|客服|网站|获取|订阅|流量|机场|下次|官址|联系|邮箱|工单|学术|USE|USED|TOTAL|EXPIRE|EMAIL|如果|更新"
-cn-dns: &cn-dns
-  - 223.5.5.5
-  - 119.29.29.29
+cn-dns: &cn-dns-domain
   - https://dns.alidns.com/dns-query
   - https://doh.pub/dns-query
 non-cn-dns: &non-cn-dns
-  - 8.8.8.8
-  - 1.1.1.1
+  - tls://8.8.8.8
+  - tls://1.1.1.1
   - https://cloudflare-dns.com/dns-query
   - https://dns.google/dns-query
 proxy-provider-template: &proxy-provider-template
@@ -36,11 +34,16 @@ dns:
   listen: "[::]:1053"
   # 是否解析 IPv6
   ipv6: true
-  direct-nameserver: *cn-dns
+  respect-rules: true
+  default-nameserver:
+    - tls://223.5.5.5
+  nameserver: *cn-dns-domain
   nameserver-policy:
-    "geosite:cn,private,google-cn": *cn-dns
-    "geosite:win-update": *cn-dns
+    "geosite:cn,private,google-cn,category-games": *cn-dns-domain
+    "geosite:win-update": *cn-dns-domain
+    "geosite:google,youtube": *non-cn-dns
     "geosite:geolocation-!cn": *non-cn-dns
+  proxy-server-nameserver: *cn-dns-domain
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.1/16
   fake-ip-filter:
@@ -49,6 +52,7 @@ dns:
     - "geosite:connectivity-check"
     - "geosite:tracker"
     - "geosite:cn"
+    - +.qianmobai.top
   fake-ip-filter-mode: blacklist
 # 代理集
 proxy-providers:
