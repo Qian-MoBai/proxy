@@ -4,8 +4,6 @@ cn-dns: &cn-dns-domain
   - https://dns.alidns.com/dns-query
   - https://doh.pub/dns-query
 non-cn-dns: &non-cn-dns
-  - tls://8.8.8.8
-  - tls://1.1.1.1
   - https://cloudflare-dns.com/dns-query
   - https://dns.google/dns-query
 proxy-provider-template: &proxy-provider-template
@@ -36,6 +34,18 @@ tun:
   auto-redirect: false
   auto-detect-interface: false
   disable-icmp-forwarding: true
+# 域名嗅探
+sniffer:
+  enable: true
+  parse-pure-ip: true
+  override-destination: true
+  sniff:
+    HTTP:
+      ports: [80, 8080-8880]
+    TLS:
+      ports: [443, 8443]
+    QUIC:
+      ports: [443, 8443]
 # DNS 配置
 dns:
   enable: true
