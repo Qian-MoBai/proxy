@@ -8,19 +8,27 @@
   "dns": {
     "servers": [
       {
+        "type": "tls",
+        "tag": "nameserver",
+        "server": "223.5.5.5",
+        "server_port": 853
+      },
+      {
         "type": "https",
         "tag": "ali-dns",
-        "server": "223.5.5.5",
+        "server": "dns.alidns.com",
         "server_port": 443,
         "path": "/dns-query",
+        "domain_resolver": "nameserver",
         "detour": "direct"
       },
       {
         "type": "https",
         "tag": "cf-dns",
-        "server": "1.1.1.1",
+        "server": "cloudflare-dns.com",
         "server_port": 443,
         "path": "/dns-query",
+        "domain_resolver": "nameserver",
         "detour": "节点选择"
       }
     ],
@@ -223,154 +231,176 @@
         "tag": "geosite-category-ads-all",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ads-all.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-connectivity-check",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/connectivity-check.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-category-ntp",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ntp.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-private",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/private.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-tracker",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/tracker.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-jetbrains-ai",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/jetbrains-ai.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-jetbrains",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/jetbrains.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-win-update",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/win-update.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-googlefcm",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/googlefcm.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-microsoft@cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/microsoft@cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-onedrive",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/onedrive.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-apple-cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/apple-cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-steam@cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/steam@cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-steam",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/steam.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-epicgames",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/epicgames.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-ea",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/ea.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-category-games",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-games.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-category-ai-!cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ai-!cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-bilibili",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/bilibili.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-geolocation-!cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/geolocation-!cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geosite-cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       },
       {
         "type": "remote",
         "tag": "geoip-cn",
         "format": "binary",
         "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geoip/cn.srs",
-        "update_interval": "12h"
+        "update_interval": "12h",
+        "download_detour": "direct"
       }
     ],
     "final": "漏网之鱼",
