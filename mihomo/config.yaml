@@ -72,6 +72,10 @@ dns:
     - "geosite:tracker"
     - "geosite:cn"
     - +.qianmobai.top
+    # yt-dlp
+    - "+.youtube.com"
+    - "+.youtu.be"
+    - "+.googlevideo.com"
   fake-ip-filter-mode: blacklist
 # 代理集
 proxy-providers:
