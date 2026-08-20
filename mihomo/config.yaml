@@ -50,7 +50,7 @@ sniffer:
 dns:
   enable: true
   cache-algorithm: arc
-  listen: "[::]:1053"
+  listen: "127.0.0.1:1053"
   # 是否解析 IPv6
   ipv6: true
   respect-rules: true
