@@ -156,12 +156,22 @@
       },
       {
         "ip_is_private": true,
-        "rule_set": [
-          "geosite-connectivity-check",
-          "geosite-category-ntp",
-          "geosite-private",
-          "geosite-tracker"
-        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-connectivity-check",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-category-ntp",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-private",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-tracker",
         "outbound": "direct"
       },
       {
