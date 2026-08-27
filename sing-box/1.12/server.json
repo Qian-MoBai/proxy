@@ -9,13 +9,21 @@
   "dns": {
     "servers": [
       {
-        "type": "https",
-        "tag": "google-dns",
+        "type": "tls",
+        "tag": "nameserver",
         "server": "8.8.8.8",
+        "server_port": 853
+      },
+      {
+        "type": "https",
+        "tag": "cf-dns",
+        "server": "cloudflare-dns.com",
         "server_port": 443,
-        "path": "/dns-query"
+        "path": "/dns-query",
+        "domain_resolver": "nameserver"
       }
-    ]
+    ],
+    "final": "cf-dns"
   },
   "inbounds": [],
   "outbounds": [
@@ -25,6 +33,7 @@
     }
   ],
   "route": {
+    "default_domain_resolver": "nameserver",
     "final": "direct-out"
   }
 }
