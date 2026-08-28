@@ -162,6 +162,10 @@
         "outbound": "block"
       },
       {
+        "rule_set": "mobai-direct",
+        "outbound": "节点选择"
+      },
+      {
         "ip_is_private": true,
         "outbound": "direct"
       },
@@ -243,6 +247,14 @@
       }
     ],
     "rule_set": [
+      {
+        "type": "remote",
+        "tag": "mobai-direct",
+        "format": "source",
+        "url": "https://testingcf.jsdelivr.net/gh/Qian-MoBai/proxy/sing-box/rules/direct.json",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
       {
         "type": "remote",
         "tag": "geosite-category-ads-all",
