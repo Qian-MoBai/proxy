@@ -1,0 +1,43 @@
+{
+  "version": "3",
+  "rules": [
+    {
+      "type": "logical",
+      "mode": "or",
+      "rules": [{ "source_port": 22 }, { "port": 22 }]
+    },
+    {
+      "type": "logical",
+      "mode": "and",
+      "rules": [
+        { "network": "udp" },
+        {
+          "type": "logical",
+          "mode": "or",
+          "rules": [{ "source_port": 9993 }, { "port": 9993 }]
+        }
+      ]
+    },
+    {
+      "domain": "time.windows.com"
+    },
+    {
+      "domain": "api.cloudflare.com"
+    },
+    {
+      "domain_suffix": "maj-soul.com"
+    },
+    {
+      "domain_suffix": "npmmirror.com"
+    },
+    {
+      "domain_keyword": "asus"
+    },
+    {
+      "domain_suffix": "zhixiaole.net"
+    },
+    {
+      "domain_suffix": "hellocraft.xyz"
+    }
+  ]
+}
