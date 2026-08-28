@@ -29,11 +29,11 @@
   "outbounds": [
     {
       "type": "direct",
-      "tag": "direct-out"
+      "tag": "direct"
     }
   ],
   "route": {
     "default_domain_resolver": "nameserver",
-    "final": "direct-out"
+    "final": "direct"
   }
 }
