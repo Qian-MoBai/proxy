@@ -163,7 +163,7 @@
       },
       {
         "rule_set": "mobai-direct",
-        "outbound": "节点选择"
+        "outbound": "direct"
       },
       {
         "ip_is_private": true,
