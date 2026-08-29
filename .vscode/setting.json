@@ -1,0 +1,8 @@
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["sing-box/rules/*.json"],
+      "url": "../schema/rules-set.json"
+    }
+  ]
+}
