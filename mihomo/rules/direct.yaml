@@ -2,6 +2,8 @@ payload:
   # Port
   - OR,((DST-PORT,22),(SRC-PORT,22))
   - AND,((NETWORK,UDP),(OR,(SRC-PORT,9993)(DST-PORT,9993)))
+  # 域名
+  - DOMAIN-SUFFIX,qianmobai.top
   # Windows NTP
   - DOMAIN,time.windows.com
   # Cloudflare API
