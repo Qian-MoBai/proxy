@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sing-box Rule Set Source Format",
+  "description": "sing-box 远程规则集源文件格式 (version 1-5)",
+  "type": "object",
+  "required": ["version", "rules"],
+  "properties": {
+    "version": {
+      "type": "integer",
+      "description": "规则集版本。1: 1.8.0+, 2: 1.10.0+, 3: 1.11.0+, 4: 1.13.0+, 5: 1.14.0+",
+      "enum": [1, 2, 3, 4, 5],
+      "default": 5
+    },
+    "rules": {
+      "type": "array",
+      "description": "无头规则列表",
+      "items": {
+        "oneOf": [
+          { "$ref": "#/definitions/defaultRule" },
+          { "$ref": "#/definitions/logicalRule" }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "stringOrArray": {
+      "oneOf": [
+        { "type": "string" },
+        { "type": "array", "items": { "type": "string" } }
+      ]
+    },
+    "numberOrArray": {
+      "oneOf": [
+        { "type": "integer" },
+        { "type": "array", "items": { "type": "integer" } }
+      ]
+    },
+    "portRangeOrArray": {
+      "oneOf": [
+        { "type": "string", "pattern": "^(:?\\d+)?:(:?\\d+)?$" },
+        {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^(:?\\d+)?:(:?\\d+)?$" }
+        }
+      ]
+    },
+    "queryTypeValue": {
+      "oneOf": [{ "type": "string" }, { "type": "integer" }]
+    },
+    "defaultRule": {
+      "type": "object",
+      "description": "默认匹配规则",
+      "properties": {
+        "query_type": {
+          "description": "DNS 查询类型 (字符串名称或整数)",
+          "oneOf": [
+            { "$ref": "#/definitions/queryTypeValue" },
+            {
+              "type": "array",
+              "items": { "$ref": "#/definitions/queryTypeValue" }
+            }
+          ]
+        },
+        "network": {
+          "description": "网络协议",
+          "oneOf": [
+            { "type": "string", "enum": ["tcp", "udp"] },
+            {
+              "type": "array",
+              "items": { "type": "string", "enum": ["tcp", "udp"] }
+            }
+          ]
+        },
+        "domain": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配完整域名"
+        },
+        "domain_suffix": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配域名后缀"
+        },
+        "domain_keyword": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配域名关键字"
+        },
+        "domain_regex": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配域名正则表达式"
+        },
+        "source_ip_cidr": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配源 IP CIDR"
+        },
+        "ip_cidr": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配 IP CIDR"
+        },
+        "source_port": {
+          "$ref": "#/definitions/numberOrArray",
+          "description": "匹配源端口"
+        },
+        "source_port_range": {
+          "$ref": "#/definitions/portRangeOrArray",
+          "description": "匹配源端口范围"
+        },
+        "port": {
+          "$ref": "#/definitions/numberOrArray",
+          "description": "匹配端口"
+        },
+        "port_range": {
+          "$ref": "#/definitions/portRangeOrArray",
+          "description": "匹配端口范围"
+        },
+        "process_name": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配进程名称 (Linux/Windows/macOS)"
+        },
+        "process_path": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配进程路径 (Linux/Windows/macOS)"
+        },
+        "process_path_regex": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "正则匹配进程路径 (1.10.0+)"
+        },
+        "package_name": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配 Android 应用包名"
+        },
+        "package_name_regex": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "正则匹配 Android 应用包名 (1.14.0+)"
+        },
+        "network_type": {
+          "description": "匹配网络类型 (Android/Apple 图形客户端, 1.11.0+)",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["wifi", "cellular", "ethernet", "other"]
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["wifi", "cellular", "ethernet", "other"]
+              }
+            }
+          ]
+        },
+        "network_is_expensive": {
+          "type": "boolean",
+          "description": "匹配计费/昂贵网络 (Android/Apple, 1.11.0+)"
+        },
+        "network_is_constrained": {
+          "type": "boolean",
+          "description": "匹配低数据模式网络 (Apple, 1.11.0+)"
+        },
+        "network_interface_address": {
+          "type": "object",
+          "description": "匹配网络接口地址 (Android/Apple, 1.13.0+)",
+          "additionalProperties": {
+            "oneOf": [
+              { "type": "string" },
+              { "type": "array", "items": { "type": "string" } }
+            ]
+          }
+        },
+        "default_interface_address": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配默认接口地址 (Linux/Windows/macOS, 1.13.0+)"
+        },
+        "wifi_ssid": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配 WiFi SSID (Android/Apple)"
+        },
+        "wifi_bssid": {
+          "$ref": "#/definitions/stringOrArray",
+          "description": "匹配 WiFi BSSID (Android/Apple)"
+        },
+        "invert": {
+          "type": "boolean",
+          "description": "反选匹配结果",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "logicalRule": {
+      "type": "object",
+      "description": "逻辑规则",
+      "required": ["type", "mode", "rules"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "logical"
+        },
+        "mode": {
+          "type": "string",
+          "enum": ["and", "or"],
+          "description": "逻辑模式"
+        },
+        "rules": {
+          "type": "array",
+          "description": "包含的子规则",
+          "items": {
+            "oneOf": [
+              { "$ref": "#/definitions/defaultRule" },
+              { "$ref": "#/definitions/logicalRule" }
+            ]
+          }
+        },
+        "invert": {
+          "type": "boolean",
+          "description": "反选匹配结果",
+          "default": false
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
