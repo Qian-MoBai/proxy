@@ -251,7 +251,7 @@
         "type": "remote",
         "tag": "mobai-direct",
         "format": "source",
-        "url": "https://gh-proxy.org/https://github.com/Qian-MoBai/proxy/blob/main/sing-box/schema/rules-set.json",
+        "url": "https://fastly.jsdelivr.net/gh/Qian-MoBai/proxy/sing-box/rules/direct.json",
         "update_interval": "12h",
         "download_detour": "direct"
       },
