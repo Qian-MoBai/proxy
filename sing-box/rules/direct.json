@@ -1,4 +1,5 @@
 {
+  "$schema": "https://gh-proxy.org/https://github.com/Qian-MoBai/proxy/blob/main/sing-box/schema/rules-set.json",
   "version": 3,
   "rules": [
     {
