@@ -12,7 +12,11 @@
         "type": "tls",
         "tag": "nameserver",
         "server": "8.8.8.8",
-        "server_port": 853
+        "server_port": 853,
+        "tls": {
+          "enabled": true,
+          "server_name": "dns.google"
+        }
       },
       {
         "type": "https",
@@ -33,7 +37,7 @@
     }
   ],
   "route": {
-    "default_domain_resolver": "nameserver",
+    "default_domain_resolver": "cf-dns",
     "final": "direct"
   }
 }
