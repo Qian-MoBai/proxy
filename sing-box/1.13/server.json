@@ -3,8 +3,7 @@
   "log": {
     "disabled": false,
     "level": "info",
-    "timestamp": true,
-    "output": "/var/log/sing-box.log"
+    "timestamp": true
   },
   "dns": {
     "servers": [
