@@ -60,7 +60,8 @@
       }
     ],
     "final": "cf-dns",
-    "strategy": "prefer_ipv4"
+    "strategy": "prefer_ipv4",
+    "reverse_mapping": true
   },
   "inbounds": [
     {
