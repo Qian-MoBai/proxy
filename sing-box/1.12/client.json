@@ -1,5 +1,4 @@
 {
-  "$schema": "https://sing-box.sagernet.org/schema.json",
   "log": {
     "disabled": false,
     "level": "warning",
@@ -60,7 +59,7 @@
         "server": "cf-dns"
       }
     ],
-    "final": "ali-dns",
+    "final": "cf-dns",
     "strategy": "prefer_ipv4"
   },
   "inbounds": [
@@ -69,8 +68,8 @@
       "type": "tun",
       "interface_name": "sing-box",
       "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
-      "auto_route": false,
-      "auto_redirect": false
+      "auto_route": true,
+      "auto_redirect": true
     },
     {
       "type": "direct",
@@ -154,12 +153,7 @@
       },
       {
         "protocol": "dns",
-
         "action": "hijack-dns"
-      },
-      {
-        "rule_set": "geosite-category-ads-all",
-        "outbound": "block"
       },
       {
         "rule_set": "mobai-direct",
