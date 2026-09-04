@@ -1,0 +1,446 @@
+{
+  "log": {
+    "disabled": false,
+    "level": "warning",
+    "timestamp": true
+  },
+  "dns": {
+    "servers": [
+      {
+        "type": "tls",
+        "tag": "nameserver",
+        "server": "223.5.5.5",
+        "server_port": 853
+      },
+      {
+        "type": "https",
+        "tag": "ali-dns",
+        "server": "dns.alidns.com",
+        "server_port": 443,
+        "path": "/dns-query",
+        "domain_resolver": "nameserver"
+      },
+      {
+        "type": "https",
+        "tag": "cf-dns",
+        "server": "cloudflare-dns.com",
+        "server_port": 443,
+        "path": "/dns-query",
+        "domain_resolver": "nameserver",
+        "detour": "节点选择"
+      }
+    ],
+    "rules": [
+      {
+        "rule_set": "geosite-category-ads-all",
+        "action": "reject"
+      },
+      {
+        "rule_set": [
+          "geosite-connectivity-check",
+          "geosite-category-ntp",
+          "geosite-private",
+          "geosite-tracker",
+          "geosite-category-games",
+          "geosite-cn"
+        ],
+        "server": "ali-dns"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "server": "cf-dns"
+      },
+      {
+        "clash_mode": "direct",
+        "server": "ali-dns"
+      },
+      {
+        "clash_mode": "global",
+        "server": "cf-dns"
+      }
+    ],
+    "final": "cf-dns",
+    "strategy": "prefer_ipv4"
+  },
+  "inbounds": [
+    {
+      "tag": "tun-in",
+      "type": "tun",
+      "interface_name": "sing-box",
+      "address": ["172.31.0.1/30", "fdfe:dcba:9876::1/126"],
+      "auto_route": true,
+      "auto_redirect": true
+    },
+    {
+      "type": "direct",
+      "tag": "dns-in",
+      "listen": "0.0.0.0",
+      "listen_port": 1053
+    },
+    {
+      "type": "http",
+      "tag": "http-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7890
+    },
+    {
+      "type": "socks",
+      "tag": "socks-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7891
+    },
+    {
+      "type": "mixed",
+      "tag": "mixed-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7892
+    },
+    {
+      "type": "redirect",
+      "tag": "redirect-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7893
+    },
+    {
+      "type": "tproxy",
+      "tag": "tproxy-in",
+      "listen": "0.0.0.0",
+      "listen_port": 7894
+    }
+  ],
+  "outbounds": [
+    {
+      "type": "direct",
+      "tag": "direct"
+    },
+    {
+      "type": "block",
+      "tag": "block"
+    },
+    {
+      "type": "selector",
+      "tag": "节点选择",
+      "outbounds": ["自动切换", "手动切换"]
+    },
+    {
+      "type": "urltest",
+      "tag": "自动切换",
+      "url": "https://www.gstatic.com/generate_204",
+      "interval": "5m",
+      "tolerance": 50,
+      "outbounds": ["direct"]
+    },
+    {
+      "type": "selector",
+      "tag": "手动切换",
+      "outbounds": ["direct"]
+    },
+    {
+      "type": "selector",
+      "tag": "游戏平台",
+      "outbounds": ["direct", "节点选择"]
+    },
+    {
+      "type": "selector",
+      "tag": "漏网之鱼",
+      "outbounds": ["节点选择", "direct"]
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "protocol": "dns",
+        "action": "hijack-dns"
+      },
+      {
+        "rule_set": "mobai-direct",
+        "outbound": "direct"
+      },
+      {
+        "ip_is_private": true,
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-connectivity-check",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-category-ntp",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-private",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-tracker",
+        "outbound": "direct"
+      },
+      {
+        "domain_suffix": ["services.googleapis.cn", "xn--ngstr-lra8j.com"],
+        "outbound": "节点选择"
+      },
+      {
+        "rule_set": "geosite-jetbrains-ai",
+        "outbound": "节点选择"
+      },
+      {
+        "rule_set": "geosite-jetbrains",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-win-update",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-googlefcm",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": [
+          "geosite-microsoft@cn",
+          "geosite-onedrive",
+          "geosite-apple-cn"
+        ],
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-steam@cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": ["geosite-steam", "geosite-epicgames", "geosite-ea"],
+        "outbound": "游戏平台"
+      },
+      {
+        "rule_set": "geosite-category-games",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-category-ai-!cn",
+        "outbound": "节点选择"
+      },
+      {
+        "rule_set": "geosite-bilibili",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geosite-geolocation-!cn",
+        "outbound": "节点选择"
+      },
+      {
+        "rule_set": "geosite-cn",
+        "outbound": "direct"
+      },
+      {
+        "rule_set": "geoip-cn",
+        "outbound": "direct"
+      }
+    ],
+    "rule_set": [
+      {
+        "type": "remote",
+        "tag": "mobai-direct",
+        "format": "source",
+        "url": "https://fastly.jsdelivr.net/gh/Qian-MoBai/proxy/sing-box/rules/direct.json",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-ads-all",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ads-all.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-connectivity-check",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/connectivity-check.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-ntp",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ntp.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-private",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/private.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-tracker",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/tracker.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-jetbrains-ai",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/jetbrains-ai.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-jetbrains",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/jetbrains.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-win-update",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/win-update.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-googlefcm",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/googlefcm.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-microsoft@cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/microsoft@cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-onedrive",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/onedrive.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-apple-cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/apple-cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-steam@cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/steam@cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-steam",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/steam.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-epicgames",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/epicgames.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-ea",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/ea.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-games",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-games.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-category-ai-!cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/category-ai-!cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-bilibili",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/bilibili.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-geolocation-!cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/geolocation-!cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geosite-cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geosite/cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      },
+      {
+        "type": "remote",
+        "tag": "geoip-cn",
+        "format": "binary",
+        "url": "https://testingcf.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@refs/heads/sing/geo/geoip/cn.srs",
+        "update_interval": "12h",
+        "download_detour": "direct"
+      }
+    ],
+    "final": "漏网之鱼",
+    "auto_detect_interface": true,
+    "default_domain_resolver": "ali-dns"
+  },
+  "experimental": {
+    "cache_file": {
+      "enabled": true
+    },
+    "clash_api": {
+      "external_controller": "127.0.0.1:9090",
+      "external_ui": "ui",
+      "external_ui_download_url": "https://gh-proxy.org/https://github.com/Zephyruso/zashboard/releases/latest/download/dist.zip",
+      "external_ui_download_detour": "direct",
+      "secret": "",
+      "default_mode": "rule"
+    }
+  }
+}
