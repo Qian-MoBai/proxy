@@ -135,5 +135,3 @@ payload:
   - IP-CIDR,52.58.128.163/32,no-resolve
   - IP-CIDR6,2a03:7220:8083:cd00::1/128,no-resolve
   - IP-CIDR6,2a04:ac00:1:3dd8::1:2710/128,no-resolve
-  # AI 中转
-  - DOMAIN-SUFFIX,micuapi.ai

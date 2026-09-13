@@ -243,6 +243,8 @@ proxy-groups:
 rules:
   # RULE-SET
   - RULE-SET,mobai-direct,DIRECT
+  # AI 中转
+  - DOMAIN-SUFFIX,micuapi.ai
   # GEOSITE
   - GEOSITE,category-ads-all,REJECT
   - GEOSITE,connectivity-check,DIRECT
